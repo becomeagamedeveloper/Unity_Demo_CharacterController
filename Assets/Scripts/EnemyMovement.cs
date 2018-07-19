@@ -50,4 +50,12 @@ public class EnemyMovement : MonoBehaviour {
                 break;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.GetComponent<PlayerController>())
+        {
+            Destroy(collision.gameObject);
+        }
+    }
 }

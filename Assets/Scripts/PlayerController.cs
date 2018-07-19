@@ -28,10 +28,19 @@ public class PlayerController : MonoBehaviour {
 
     private bool _ground = false;
 
-    private bool jumped = false;
         
-	// Use this for initialization
-	void Start () {
+
+
+    private float _jumpTime = 0;        //Per evitare che il salto venga effettuato più volte di seguito
+
+    [SerializeField]
+    private float _jumpSpeed = 12;
+
+
+
+    // Use this for initialization
+    void Start () {
+
 
         //Acquisisce una reference al manager delle animazioni in unity
         _animator = GetComponent<Animator>();
@@ -100,9 +109,13 @@ public class PlayerController : MonoBehaviour {
         //Restituisce true se viene trovato almeno un collider il cui layer è contenuto in _whatIsGround
         _ground = Physics2D.OverlapCircle(_groundChecker.transform.position, _roundCheck, _whatIsGround);
 
-        if (_ground && Input.GetAxis("Jump") != 0 )
+
+
+        if (_ground && Input.GetAxis("Jump") != 0 && Time.time - _jumpTime > 0.1f)
         {
-            _body.AddForce(new Vector2(0, _jumpForce));
+            _body.velocity = new Vector2(_body.velocity.x, _jumpSpeed);
+
+            _jumpTime = Time.time;
         }
 
     }

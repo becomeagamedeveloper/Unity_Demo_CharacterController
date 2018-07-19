@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Gem
   - PlatformCollider
+  - Projectile
   layers:
   - Default
   - TransparentFX

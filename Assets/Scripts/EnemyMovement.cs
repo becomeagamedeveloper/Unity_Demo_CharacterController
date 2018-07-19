@@ -45,6 +45,9 @@ public class EnemyMovement : MonoBehaviour {
             case "PlatformCollider":
                 Flip();
                 break;
+            case "Projectile":
+                Destroy(this.gameObject);
+                break;
         }
     }
 }

@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour {
 
     private bool _ground = false;
 
-
+    private bool jumped = false;
         
 	// Use this for initialization
 	void Start () {
@@ -45,7 +45,16 @@ public class PlayerController : MonoBehaviour {
 
         CheckHorizontalMovement();
 
-        
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            GameObject projectile = Instantiate(_projectile, transform.position, Quaternion.identity);
+            Cherry cherry = projectile.GetComponent<Cherry>();
+            if(cherry._isFacingRight != _isFacingRight)
+            {
+                cherry.Flip();
+            }
+
+        }
 
 
     }
@@ -91,7 +100,7 @@ public class PlayerController : MonoBehaviour {
         //Restituisce true se viene trovato almeno un collider il cui layer è contenuto in _whatIsGround
         _ground = Physics2D.OverlapCircle(_groundChecker.transform.position, _roundCheck, _whatIsGround);
 
-        if (_ground && Input.GetAxis("Jump") != 0)
+        if (_ground && Input.GetAxis("Jump") != 0 )
         {
             _body.AddForce(new Vector2(0, _jumpForce));
         }

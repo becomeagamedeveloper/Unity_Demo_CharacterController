@@ -41,10 +41,7 @@ public class PlayerController : MonoBehaviour {
 
         CheckHorizontalMovement();
 
-        if (_ground && Input.GetAxis("Jump") != 0)
-        {
-            _body.AddForce(new Vector2(0, _jumpForce));
-        }
+        
 
 
     }
@@ -90,7 +87,10 @@ public class PlayerController : MonoBehaviour {
         //Restituisce true se viene trovato almeno un collider il cui layer è contenuto in _whatIsGround
         _ground = Physics2D.OverlapCircle(_groundChecker.transform.position, _roundCheck, _whatIsGround);
 
-        
+        if (_ground && Input.GetAxis("Jump") != 0)
+        {
+            _body.AddForce(new Vector2(0, _jumpForce));
+        }
 
     }
 

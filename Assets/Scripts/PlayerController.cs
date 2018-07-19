@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour {
 
     private Rigidbody2D _body;
 
+    [SerializeField]
+    private GameObject _projectile;
+
+
     private Animator _animator;             //Manager delle animazioni in unity
 
     [SerializeField]
